@@ -2,9 +2,9 @@ package com.hgk.entities;
 
 public class Student 
 {
-	int rollNumber;
-	String name;
-	float percentage;
+	private int rollNumber;
+	private String name;
+	private float percentage;
 	
 	// constructors 
 	

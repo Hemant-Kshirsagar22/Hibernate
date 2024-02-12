@@ -2,10 +2,10 @@ package com.hgk.entities;
 
 public class Employee 
 {
-	int eno;
-	String ename;
-	double salary;
-	String city;
+	private int eno;
+	private String ename;
+	private double salary;
+	private String city;
 	
 	public Employee()
 	{
