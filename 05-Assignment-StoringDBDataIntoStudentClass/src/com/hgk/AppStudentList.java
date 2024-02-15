@@ -4,14 +4,19 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
-public class DisplayDataFromDB {
+import com.hgk.entities.Student;
 
+public class AppStudentList 
+{
 	public static void main(String[] args) throws Exception
-    {
+	{
         
         Connection connection = null;
         Statement query = null;
+        
         ResultSet rs = null;
 
         String DBUrl = "jdbc:mysql://localhost:3306/hibernate";
@@ -33,10 +38,26 @@ public class DisplayDataFromDB {
             
             rs = query.executeQuery("select * from student");
                         
-            System.out.println("RNO NAME PER");
+           
+            
+            List<Student> studentList = new ArrayList<>();
+            
             while(rs.next())
             {
-            	System.out.println(rs.getInt("rno") + " " + rs.getString("name") + "  " + rs.getFloat("per"));
+            	Student student = new Student();
+            	
+            	student.setRollNumber(rs.getInt("rno"));
+            	student.setName(rs.getString("name"));
+            	student.setPercentage(rs.getFloat("per"));
+            	
+            	studentList.add(student);
+            }
+            
+            System.out.println("List Of Students : ");
+            System.out.println("RNO NAME PER");
+            for(Student student : studentList)
+            {
+            	System.out.println(student.getRollNumber() + " " + student.getName() + "  " + student.getPercentage());            	
             }
         }   
         catch(Exception e)
