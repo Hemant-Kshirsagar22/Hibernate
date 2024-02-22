@@ -11,7 +11,8 @@ public class App
 {
     public static void main( String[] args )
     {
-        Configuration configuration = new Configuration().configure();
+        Configuration configuration = new Configuration();
+        configuration.configure();
         SessionFactory sessionFactory = configuration.buildSessionFactory();
         
         Session session = sessionFactory.openSession();
@@ -34,11 +35,14 @@ public class App
         {
         	transaction.rollback();     
         }
+        finally
+        {
+        	session.close();
+            sessionFactory.close();
+        }
                 
         System.out.println("First Hibernate Program !!!");
         
-        session.close();
-        sessionFactory.close();
                 
     }
 }
